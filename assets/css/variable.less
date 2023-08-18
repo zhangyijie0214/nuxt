@@ -1,0 +1,151 @@
+@charset "utf-8";
+@themeColor: #603c94;
+@fontColor: #1E3E66;
+@fontColor1: #1E3E65;
+@textColor: #1E3046;
+@baground: #8441E8;
+
+.paddinght(@height: 50%, @time: 0.5s) {
+	position: relative;
+	display: block;
+	padding-bottom: @height;
+	height: 0;
+	overflow: hidden;
+	line-height: 1;
+
+	img {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+.showboxs(@deg: 90deg){
+	background: linear-gradient(@deg, #6E06F9,  #EE629D);
+}
+
+.textshows{
+  background-image: linear-gradient(90deg, #6E06F9 0%, #EE629D 100%);;
+  background-clip: text;
+  -webkit-background-clip: text;
+	color: transparent;
+	display: inline-block;
+}
+.calc-width ($w) {
+  width: $w / 1920 * 100vw
+}
+
+.calc-width-mobile ($w) {
+  width: $w / 750 * 100vw
+}
+
+.calc-height ($h) {
+  height: $h / 1080 * 100vh
+}
+.Rany-Regular(){
+	font-family: "Rany-Regular";
+}
+
+.Rany-Bold(){
+	font-family: "Rany-Bold";
+}
+
+.lineaimate(@height: 1px, @color: @themeColor, @time: 0.4s) {
+	&:before {
+		content: "";
+		width: 0;
+		height: @height;
+		background: @color;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		transition: @time;
+		z-index: -1;
+	}
+
+	&:hover,
+	&.active {
+		color: @color;
+
+		&:before {
+			width: 100%;
+			right: auto;
+			left: 0;
+		}
+	}
+}
+
+.lineaimate1(@color: @themeColor, @time: 0.4s) {
+	&:before {
+		content: "";
+		width: 100%;
+		height: 0;
+		background: @color;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		transition: @time;
+		z-index: -1;
+	}
+
+	&:hover,
+	&.active {
+		color: @color;
+
+		&:before {
+			height: 100%;
+			bottom: auto;
+			top: 0;
+		}
+	}
+}
+
+.marginauto {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.linenowrap {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.multiliwrap(@line: 2) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: @line;
+	-webkit-box-orient: vertical;
+}
+
+.flexCetween {
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+
+.flexCetweenAlign {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.flexAlign {
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	align-items: center;
+	-webkit-align-items: center;
+}
+

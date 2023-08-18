@@ -1,0 +1,22 @@
+{
+  "tabWidth": 4,
+  "semi": false,
+  "trailingComma": "none",
+  "singleQuote": true,
+  "printWidth": 100,
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "endOfLine": "auto",
+  "useTabs": true,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "rangeStart": 1,
+  "rangeEnd": 1,
+  "requirePragma": false,
+  "insertPragma": false,
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "css",
+  "plugins": [
+    "prettier-plugin-eslint"
+  ]
+}

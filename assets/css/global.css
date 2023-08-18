@@ -1,0 +1,586 @@
+@charset "utf-8";
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  border: 0;
+  outline: none;
+}
+
+html {
+  font-size: 100%;
+}
+
+/* always display scrollbars */
+body {
+  overflow-y: visible\9;
+  margin: 0 auto;
+  margin: auto;
+  color: #000000;
+  background-color: #ffffff;
+  font: 12px/1.8 Rany-Medium, 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
+  _background-attachment: fixed;
+  _background-image: url('about:blank');
+  text-size-adjust: 100% !important;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+body.en {
+  font: 12px/1.8 Montserrat, 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+body.show {
+  overflow: hidden;
+}
+
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+strong {
+  font-weight: bold;
+}
+
+input {
+  padding: 0;
+  outline: none;
+}
+
+img {
+  border: 0;
+}
+
+input[type='text'],
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
+select {
+  appearance: none;
+  border-radius: 0;
+}
+
+textarea {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  outline: none;
+  appearance: none;
+}
+
+::selection {
+  color: #ffffff;
+  background: #f7a300;
+  text-shadow: none;
+}
+
+::selection {
+  color: #ffffff;
+  background: #f7a300;
+  text-shadow: none;
+}
+
+a {
+  transition: 0.3s;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:active,
+a:hover {
+  text-decoration: none;
+}
+
+.fc {
+  text-align: center;
+}
+
+.fr {
+  text-align: right;
+}
+
+.fl {
+  float: right;
+}
+
+.vt {
+  vertical-align: top;
+}
+
+.vm {
+  vertical-align: middle;
+}
+
+.clearfix::after {
+  display: block;
+  clear: both;
+  height: 0;
+  font-size: 0;
+  visibility: hidden;
+  content: '';
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+* html .clearfix {
+  zoom: 1;
+}
+
+.inner {
+  margin: 0 auto;
+  width: 1560px;
+}
+
+.menubtn {
+  position: relative;
+  z-index: 20;
+  display: none;
+  float: right;
+  width: 26px;
+  height: 30px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.menubtn span {
+  position: relative;
+  display: block;
+  margin-top: 15px;
+  width: 100%;
+  height: 2px;
+  transition: color 0.3s 0s;
+  vertical-align: middle;
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0.3s, 0s;
+}
+
+.menubtn span::after,
+.menubtn span::before {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 26px;
+  height: 2px;
+  background-color: #ffffff;
+  content: '';
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0.3s, 0s
+}
+
+.menubtn span::before {
+  top: -6px;
+  transition-property: top, transform;
+}
+
+.menubtn span::after {
+  bottom: -6px;
+  width: 80%;
+  transition-property: bottom, transform;
+}
+
+.menubtn.active span {
+  background-color: transparent;
+  transition-delay: 0s, 0s;
+}
+
+.menubtn.active span::after,
+.menubtn.active span::before {
+  width: 100%;
+  transition-delay: 0s, 0.3s;
+}
+
+.menubtn.active span::before {
+  top: 0;
+  transform: rotate(45deg)
+}
+
+.menubtn.active span::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+
+@keyframes arrowMove {
+
+  0% {
+    transform: translateY(0) scale(0.8);
+  }
+
+  100% {
+    transform: translateY(8px) scale(0.8);
+  }
+}
+
+.animetarge {
+  opacity: 0;
+}
+
+.animetarge .targe span {
+  display: inline-block !important;
+  height: max-content;
+  transition: transform 0.8s 0.2s cubic-bezier(0.26, 1, 0.48, 1);
+  transform-origin: left bottom;
+  transform-style: preserve-3d;
+  transform: rotateX(-90deg) rotateZ(15deg) translateZ(2px);
+  will-change: transform;
+}
+
+.animetarge.articleShow {
+  opacity: 1;
+}
+
+.animetarge.articleShow .targe span {
+  transform: rotateX(0) rotateZ(0);
+}
+
+.slidetop {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(80px);
+  transition: 1.2s cubic-bezier(0.26, 1, 0.48, 1);
+}
+
+.slidetop.articleShow {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.slidetop.articleShow.detay1 {
+  transition-delay: 0.25s;
+}
+
+.slidetop.articleShow.detay2 {
+  transition-delay: 0.5;
+}
+
+.slideList>li,
+.slideList>div {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(80px);
+  transition: opacity 1s cubic-bezier(0.26, 1, 0.48, 1), transform 1s cubic-bezier(0.26, 1, 0.48, 1);
+}
+
+.slideList.articleShow>li,
+.slideList.articleShow>div {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.slideList.articleShow>li:nth-child(2),
+.slideList.articleShow>div:nth-child(2) {
+  transition-delay: 0.25s;
+}
+
+.slideList.articleShow>li:nth-child(3),
+.slideList.articleShow>div:nth-child(3) {
+  transition-delay: 0.5s;
+}
+
+.slideList.articleShow>li:nth-child(4),
+.slideList.articleShow>div:nth-child(4) {
+  transition-delay: 0.75s;
+}
+
+.slideList.articleShow>li:nth-child(5),
+.slideList.articleShow>div:nth-child(5) {
+  transition-delay: 1s;
+}
+
+.slideList.articleShow>li:nth-child(6),
+.slideList.articleShow>div:nth-child(6) {
+  transition-delay: 1.2s;
+}
+
+.pathClie {
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transition: opacity 1s ease-out, clip-path 1s cubic-bezier(0.26, 1, 0.48, 1);
+}
+
+.pathClie1 {
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transition: opacity 1.5s ease-out, clip-path 1.5s cubic-bezier(0.26, 1, 0.48, 1);
+}
+
+.pathClie.articleShow,
+.pathClie1.articleShow {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+.slick-slide {
+  float: left;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  transform: translateZ(0)
+}
+
+.slick-list:focus {
+  outline: none
+}
+
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
+}
+
+/*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction='horizontal'] [data-scroll-container] {
+  display: inline-block;
+  height: 100vh;
+  white-space: nowrap;
+}
+
+[data-scroll-direction='horizontal'] [data-scroll-section] {
+  display: inline-block;
+  height: 100%;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.c-scrollbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 199;
+  width: 11px;
+  height: 100%;
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  transform-origin: center right;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+
+[data-scroll-direction='horizontal'] .c-scrollbar {
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+  transform: scaleY(1);
+}
+
+[data-scroll-direction='horizontal'] .c-scrollbar:hover {
+  transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2px;
+  width: 7px;
+  border-radius: 10px;
+  background: linear-gradient(0, #6e06f9, #ee629d);
+  opacity: 1;
+  cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: grabbing;
+}
+
+[data-scroll-direction='horizontal'] .c-scrollbar_thumb {
+  right: auto;
+  bottom: 0;
+}
