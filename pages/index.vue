@@ -6,9 +6,11 @@ import { ElMessage } from 'element-plus'
 const loginRight:any = ref(null)
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
-
 import { useUserStore } from '../store/useUserStore'
-
+import { EMAIL_REGULAR } from '../configs/regularValidation'
+definePageMeta({
+    middleware: ['is-login']
+})
 const { login } = useUserStore()
 const validateEmail = (rule: any, value: any, callback: any) => {
 
@@ -17,7 +19,7 @@ const validateEmail = (rule: any, value: any, callback: any) => {
         callback(new Error('邮箱不能为空'))
 
 
-    }else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(value)) {
+    }else if (!EMAIL_REGULAR.test(value)) {
 
         callback(new Error('邮箱格式错误'))
 
@@ -149,7 +151,7 @@ const loginEvent = async() => {
                 <label class="label">
                     <span class="label-text"></span>
                     <span class="label-text-alt text-sm">
-                        忘记密码？
+                        <a class="link"><nuxt-link to="/login/ForgetEmailPage">忘记密码？</nuxt-link></a>
                     </span>
                 </label>
                 <el-form-item>
@@ -163,7 +165,7 @@ const loginEvent = async() => {
             <label class="label">
                 <span class="label-text" style="color:#696f79">
                     没有账号？
-                    <a class="link" style="color:#ffc219"><nuxt-link to="/login/registerPage">点击此处注册</nuxt-link></a>
+                    <a class="link" style="color:#ffc219"><nuxt-link to="/login/RegisterPage">点击此处注册</nuxt-link></a>
                 </span>
             </label>
         </div>
@@ -195,9 +197,6 @@ const loginEvent = async() => {
     color:#ffffff;
   }
 
-  :deep(.el-input__wrapper) {
-    --el-input-border-radius:0.5rem;
-  }
 
   :deep(.label) {
     padding-top:0

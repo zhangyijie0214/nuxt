@@ -2,33 +2,94 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-15 17:42:57
- * @lastTime : 2023-08-17 15:34:01
+ * @lastTime : 2023-08-22 19:02:33
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/info.vue
 -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
+import type { TableColumnCtx, TableInstance } from 'element-plus'
+// @ts-ignore
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-definePageMeta({
-    middleware: ['auth']
-})
 import NavBar from '../components/navBar/NavBar.vue'
-const currentPage1 = ref(5)
-const currentPage2 = ref(5)
-const currentPage3 = ref(5)
-const currentPage4 = ref(4)
-const pageSize2 = ref(100)
+
+const currentPage3 = ref(1)
 const pageSize3 = ref(100)
-const pageSize4 = ref(100)
 const small = ref(false)
-const background = ref(false)
-const disabled = ref(false)
+const num = ref(0)
+onMounted(() => {
+
+    const _wrapperHeight = tableRef.value?.$el.getElementsByClassName('el-table__inner-wrapper')[0].offsetHeight
+    const _rowHeight = tableRef.value?.$el.getElementsByClassName('el-table__row')[0].offsetHeight
+    console.log('_wrapperHeight',_wrapperHeight)
+    console.log('tableRef.value?.$el.clientHeight',_wrapperHeight / 44 ,_wrapperHeight,_rowHeight)
+
+
+})
+const tableRef = ref<TableInstance>()
+const tableRef2 = ref<TableInstance>()
 
 const tableData = [
     {
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
+    },{
+        quote_id: '20230601620123122',
+        quote_time: '2016-05-03',
+        quote_type: '产品类',
+        product_name: 'Compressor 3stage',
+        company: '上海市政院三院'
     },
 ]
 
@@ -54,118 +115,61 @@ const handleCurrentChange = (val: number) => {
         <div v-else class="quotation--list--content">
             <div class="text-xl" style="margin-bottom: 20px;font-weight: 500;">我的报价单</div>
             <div class="quotation--list--content__box">
-                <div class="overflow-x-auto border shadow-xl rounded-box">
-                    <table class="table">
-                        <!-- head -->
-                        <thead>
-                            <tr>
-                                <th>报价编号</th>
-                                <th>询价公司</th>
-                                <th>产品名称</th>
-                                <th>报价时间</th>
-                                <th>报价类别</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="hover">
-                                <td>20230601620123122</td>
-                                <td>上海市政院三院</td>
-                                <td>Geared speed single-stage centrifugal blower 单级离心式鼓风机</td>
-                                <td>2021-12-14</td>
-                                <td>产品类</td>
-                                <td>
-                                    下载
-                                </td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                            <tr class="hover">
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                                <td>Purple</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <el-config-provider :locale="zhCn">
-                        <el-pagination
-                            v-model:current-page="currentPage3"
-                            v-model:page-size="pageSize3"
-                            class="quotation--list--content--pagination border shadow-xl rounded-box"
-                            :small="small"
-                            :disabled="disabled"
-                            layout="prev, pager, next, jumper"
-                            :total="1000"
-                            @size-change="handleSizeChange"
-                            @current-change="handleCurrentChange"
-                        />
-                    </el-config-provider>
-                </div>
+                <el-table
+                    ref="tableRef"
+                    v-loading="false"
+                    class="overflow-x-auto border shadow-md rounded-box"
+                    row-key="date"
+                    :data="tableData"
+                    style="width: 100%;min-height:70vh;"
+                >
+                    <el-table-column prop="quote_id" label="报价编号" min-width="140" />
+                    <el-table-column prop="company" label="询价公司" min-width="180" />
+                    <el-table-column prop="product_name" label="产品名称" min-width="220" />
+
+                    <el-table-column
+                        prop="quote_time"
+                        label="报价时间"
+                        min-width="160"
+                        column-key="date"
+                    />
+                    <el-table-column
+                        prop="tag"
+                        label="报价类别"
+                        min-width="160"
+                    >
+                        <template #default="scope">
+                            <el-tag
+                                :type="scope.row.tag === 'Home' ? '' : 'success'"
+                                disable-transitions
+                            >产品类</el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                        prop="tag"
+                        label="下载"
+                        min-width="120"
+                    >
+                        <template #default>
+                            <div style="display: flex;height:100%">
+                                <a href="#"><img style="height: 26px;" src="../public/images/info/down_pdf.png" alt="" /></a>
+                                <a href="#" style="margin-left: 20px;"><img style="height: 26px;" src="../public/images/info/down_word.png" alt="" /></a>
+                            </div>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-config-provider :locale="zhCn">
+                    <el-pagination
+                        v-model:current-page="currentPage3"
+                        v-model:page-size="pageSize3"
+                        class="quotation--list--content--pagination border shadow-md rounded-box"
+                        :small="small"
+                        layout="prev, pager, next, jumper"
+                        :total="1000"
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                    />
+                </el-config-provider>
             </div>
 
 
@@ -179,10 +183,11 @@ const handleCurrentChange = (val: number) => {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  min-height: 740px;
 
   .quotation--list--content {
     top: 30px;
-    width: 80vw;
+    width: 90vw;
 
     .quotation--list--content__box {
       position: relative;

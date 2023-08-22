@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-16 14:26:18
- * @lastTime : 2023-08-17 14:05:47
+ * @lastTime : 2023-08-22 11:23:50
  * @LastAuthor : Do not edit
  * @文件路径 : /components/navBar/NavBar.vue
 -->
@@ -13,7 +13,7 @@ import { NAV_LIST } from '../../configs/navBarList'
 </script>
 
 <template>
-    <div class="navbar bg-base-100 shadow-xl rounded-box">
+    <div class="navbar bg-base-100 shadow-md rounded-box">
         <div class="navbar-start">
             <img style="padding-left:36px;height: 100%; object-fit: cover;" src="../../public/images/logo.png" alt="" />
         </div>
@@ -32,7 +32,7 @@ import { NAV_LIST } from '../../configs/navBarList'
                     <li>
                         <a class="justify-between">
                             <el-icon><SwitchButton /></el-icon>
-                            <span><nuxt-link to="/login/">退出登录</nuxt-link></span>
+                            <span><nuxt-link to="/">退出登录</nuxt-link></span>
                         </a>
                     </li>
                 </ul>

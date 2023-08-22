@@ -8,19 +8,42 @@ export default defineNuxtConfig({
             enabled: true
         }
     },
-    router: {
-        middleware: ['redirect'],
-        extendRoutes(routes, resolve) {
 
-            // 查找首页路由
-            const indexRoute = routes.find(route => route.name === 'index')
+    hooks: {
+        'pages:extend'(routes) {
 
-            // 为首页路由添加别名
-            if (indexRoute) {
+            console.log('routes1',routes)
+            const resolve = require('path').resolve
 
-                indexRoute.alias = '/index.html'
+            // 扩展路由，让 nuxt 支持静态页面请求，如 https://www.xxx.cn/index.html
+            const indexRoutes = []
+            routes.forEach(element => {
 
-            }
+                let newPath = ''
+                if (element.path.endsWith('/')) {
+
+                    newPath += 'index.html'
+
+                } else {
+
+                    newPath += '/index.html'
+
+                }
+                indexRoutes.push({
+                    name: element.name + '/index.html',
+                    path: element.path + newPath,
+                    file: element.file,
+                })
+
+            })
+
+            indexRoutes.forEach(element => {
+
+                routes.push(element)
+
+            })
+
+            console.log('routes',routes)
 
         }
     },
@@ -59,9 +82,17 @@ export default defineNuxtConfig({
             },
         },
     },
-    ssr: false,
     server: {
         host: '192.168.10.135', // 默认是 'localhost'
         port: 8081 // 默认是 3000
     },
+    ssr: false
+    // hooks: {
+    //     'prerender:routes'({ routes }) {
+
+    //         routes.clear()
+    //         routes.add('/')
+
+    //     }
+    // }
 })

@@ -15,7 +15,7 @@ const LOGIN_STATE = [
         buttonText: '登录',
         ok: () => {
 
-            router.push({ path: '/login/' })
+            router.push({ path: '/' })
 
         }
     },
@@ -24,12 +24,7 @@ const LOGIN_STATE = [
         title: '审核中',
         icon: InfoFilled,
         tips: '您的账号在审核中，\n我们会在第一时间邮件告知审核进度！',
-        buttonText: '我知道了',
-        ok: () => {
-
-            console.log('ok')
-
-        }
+        buttonText: '',
     },
     {
         key: 'auditFailure',
@@ -76,12 +71,12 @@ function back() {
             </button>
             <el-icon style="margin: 30px auto;" size="70" color="#50B042"><CircleCheckFilled /></el-icon>
             <div class="right--title">
-                {{ info.title }}
+                {{ info?.title }}
             </div>
             <div class="right--tips">
-                {{ info.tips }}
+                {{ info?.tips }}
             </div>
-            <button v-if="info.buttonText" class="btn btn-block right--btn" @click="info?.ok">  {{ info?.buttonText }}</button>
+            <button v-if="info?.buttonText" class="btn btn-block right--btn" @click="info?.ok">  {{ info?.buttonText }}</button>
         </div>
     </LoginLeft>
 </template>

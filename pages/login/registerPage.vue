@@ -8,7 +8,8 @@ const registerRight:any = ref(null)
 const ruleFormRef = ref<FormInstance>()
 const router = useRouter()
 
-import { useUserStore } from '../store/useUserStore'
+import { useUserStore } from '../../store/useUserStore'
+const { getAccountRegister } = useUserStore()
 
 
 const validateEmail = (rule: any, value: any, callback: any) => {
@@ -103,9 +104,29 @@ function back() {
 
 }
 
-function registerButton() {
+async function registerButton() {
 
-    router.push({ path: '/login/LoginStatePage',query: { state: 'emailSuccess' } })
+
+    const _res = await getAccountRegister({
+        dealer_name: ruleForm.userCompany,
+        contact_name: ruleForm.userName,
+        email: ruleForm.email,
+    })
+
+    if(_res.success) {
+
+        router.push({ path: '/login/LoginStatePage',query: { state: 'emailSuccess' } })
+
+    }else{
+
+        ElMessage({
+            appendTo: registerRight.value,
+            message: _res.msg,
+            type: 'error'
+        })
+
+    }
+
 
 }
 </script>
@@ -186,6 +207,7 @@ function registerButton() {
   margin: 0 auto;
   padding: 50px 100px;
   width: 500px;
+  transform: scale(1);
 
   .register--right--title {
     margin: 0 0 20px;
@@ -218,9 +240,7 @@ function registerButton() {
     color: #8692a6;
   }
 
-  :deep(.el-input__wrapper) {
-    --el-input-border-radius:0.5rem;
-  }
+   
 
   :deep(.label) {
     padding-top:0

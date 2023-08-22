@@ -17,6 +17,11 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     const _API = {
         login: (data) => net.callEasyItf('login', data),
+        accountRegister: (data) => net.callEasyItf('accountRegister', data),
+        updatePassword: (data) => net.callEasyItf('updatePassword', data),
+        forgotPassword: (data) => net.callEasyItf('forgotPassword', data),
+        isLogin: (data) => net.callEasyItf('isLogin', data),
+
     }
 
     nuxtApp.provide('api', _API)
