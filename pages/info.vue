@@ -2,96 +2,64 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-15 17:42:57
- * @lastTime : 2023-08-22 19:02:33
+ * @lastTime : 2023-08-25 21:38:02
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/info.vue
 -->
 <script setup lang="ts">
-import { ref,onMounted } from 'vue'
-import type { TableColumnCtx, TableInstance } from 'element-plus'
+import type { TableInstance } from 'element-plus'
 // @ts-ignore
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import NavBar from '../components/navBar/NavBar.vue'
+import { useProductStore } from '../store/useProductStore'
+const { getDealerQuote } = useProductStore()
 
+const isLoading = ref(false)
 const currentPage3 = ref(1)
 const pageSize3 = ref(100)
 const small = ref(false)
-const num = ref(0)
-onMounted(() => {
+const listHeight = ref(0)
+const tableInfo = reactive({
+    // 显示的数据
+    tableData: [],
+    // 每页数量
+    pageSize: 10,
+    // 当前页数
+    currentPage: 1,
+    // 总页数
+    recCount: 0,
+})
+onMounted(async() => {
 
-    const _wrapperHeight = tableRef.value?.$el.getElementsByClassName('el-table__inner-wrapper')[0].offsetHeight
-    const _rowHeight = tableRef.value?.$el.getElementsByClassName('el-table__row')[0].offsetHeight
-    console.log('_wrapperHeight',_wrapperHeight)
-    console.log('tableRef.value?.$el.clientHeight',_wrapperHeight / 44 ,_wrapperHeight,_rowHeight)
-
+    const _wrapperHeight = tableRef.value?.$el.offsetHeight
+    tableInfo.pageSize = Math.ceil(_wrapperHeight / 44)
+    await getList()
+    listHeight.value = _wrapperHeight
 
 })
-const tableRef = ref<TableInstance>()
-const tableRef2 = ref<TableInstance>()
 
-const tableData = [
-    {
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },{
-        quote_id: '20230601620123122',
-        quote_time: '2016-05-03',
-        quote_type: '产品类',
-        product_name: 'Compressor 3stage',
-        company: '上海市政院三院'
-    },
-]
+async function getList() {
+
+    const { currentPage,pageSize } = tableInfo
+    isLoading.value = true
+    const _res = await getDealerQuote({ CurPage: currentPage,PageSize: pageSize })
+    isLoading.value = false
+    if(_res.success) {
+
+        tableInfo.tableData = _res.data
+        tableInfo.recCount = _res.RecCount
+
+    }else{
+
+        ElMessageBox.alert(_res.msg, '失败', {
+            confirmButtonText: '确认',
+        })
+
+    }
+
+}
+const tableRef = ref<TableInstance>()
+
 
 const handleSizeChange = (val: number) => {
 
@@ -103,11 +71,12 @@ const handleCurrentChange = (val: number) => {
     console.log(`current page: ${val}`)
 
 }
+
 </script>
 
 <template>
     <div class="quotation--list">
-        <NavBar />
+        <NavBar show-key="3" />
         <div v-if="false" class="quotation--list--content">
             <div class="text-3xl" style="font-weight: 500;text-align: center;">我的报价单</div>
             <el-empty description="暂无数据" />
@@ -117,13 +86,13 @@ const handleCurrentChange = (val: number) => {
             <div class="quotation--list--content__box">
                 <el-table
                     ref="tableRef"
-                    v-loading="false"
+                    v-loading="isLoading"
                     class="overflow-x-auto border shadow-md rounded-box"
                     row-key="date"
-                    :data="tableData"
-                    style="width: 100%;min-height:70vh;"
+                    :data="tableInfo.tableData"
+                    style="overflow:auto;width: 100%; min-height:calc(100vh - 4rem - 12rem - 80px);"
                 >
-                    <el-table-column prop="quote_id" label="报价编号" min-width="140" />
+                    <el-table-column prop="quote_number" label="报价编号" min-width="140" />
                     <el-table-column prop="company" label="询价公司" min-width="180" />
                     <el-table-column prop="product_name" label="产品名称" min-width="220" />
 
@@ -134,31 +103,30 @@ const handleCurrentChange = (val: number) => {
                         column-key="date"
                     />
                     <el-table-column
-                        prop="tag"
+                        prop="quote_type"
                         label="报价类别"
                         min-width="160"
                     >
                         <template #default="scope">
                             <el-tag
-                                :type="scope.row.tag === 'Home' ? '' : 'success'"
+                                :type="~~scope.row.quote_type === 1 ? '' : 'success'"
                                 disable-transitions
-                            >产品类</el-tag>
+                            >{{ ~~scope.row.quote_type === 1 ? "产品类" : ~~scope.row.quote_type === 2 ? "服务类" : '' }}</el-tag>
                         </template>
                     </el-table-column>
                     <el-table-column
-                        prop="tag"
                         label="下载"
                         min-width="120"
                     >
-                        <template #default>
+                        <template #default="scope">
                             <div style="display: flex;height:100%">
-                                <a href="#"><img style="height: 26px;" src="../public/images/info/down_pdf.png" alt="" /></a>
-                                <a href="#" style="margin-left: 20px;"><img style="height: 26px;" src="../public/images/info/down_word.png" alt="" /></a>
+                                <a v-if="scope.row.quote_pdf_path" :href="scope.row.quote_pdf_path"><img style="height: 26px;" src="../public/images/info/down_pdf.png" alt="" /></a>
+                                <a v-if="scope.row.agreement_word_path" :href="scope.row.agreement_word_path" style="margin-left: 20px;"><img style="height: 26px;" src="../public/images/info/down_word.png" alt="" /></a>
                             </div>
                         </template>
                     </el-table-column>
                 </el-table>
-                <el-config-provider :locale="zhCn">
+                <el-config-provider v-if="tableInfo.recCount >= tableInfo.pageSize" :locale="zhCn">
                     <el-pagination
                         v-model:current-page="currentPage3"
                         v-model:page-size="pageSize3"
@@ -183,10 +151,9 @@ const handleCurrentChange = (val: number) => {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  min-height: 740px;
+  min-height: 800px;
 
   .quotation--list--content {
-    top: 30px;
     width: 90vw;
 
     .quotation--list--content__box {

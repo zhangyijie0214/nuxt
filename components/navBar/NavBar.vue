@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-16 14:26:18
- * @lastTime : 2023-08-22 11:23:50
+ * @lastTime : 2023-08-24 13:45:32
  * @LastAuthor : Do not edit
  * @文件路径 : /components/navBar/NavBar.vue
 -->
@@ -10,6 +10,13 @@
 import { SwitchButton } from '@element-plus/icons-vue'
 import { NAV_LIST } from '../../configs/navBarList'
 
+
+const props = defineProps({ showKey: String })
+function jumpPath(path:string) {
+
+    navigateTo(path)
+
+}
 </script>
 
 <template>
@@ -20,7 +27,7 @@ import { NAV_LIST } from '../../configs/navBarList'
 
         <div class="navbar-end  lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li v-for="(item,index) in NAV_LIST" :key="index" :class=" index == 2 ? 'bar--select' : ''">
+                <li v-for="(item,index) in NAV_LIST" :key="index" :class=" props.showKey === item.key ? 'bar--select' : ''" @click="jumpPath(item.path)">
                     <a>{{ item.name }}</a>
                 </li>
             </ul>
@@ -45,6 +52,8 @@ import { NAV_LIST } from '../../configs/navBarList'
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
+  background: #ffffff;
 
   .bar--select {
     color: #ffc219;

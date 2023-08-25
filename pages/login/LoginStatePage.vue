@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import LoginLeft from '../../components/login/LoginLeft.vue'
 import { ArrowLeftBold,CircleCheckFilled,InfoFilled } from '@element-plus/icons-vue'
-import { onMounted } from 'vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -30,10 +29,10 @@ const LOGIN_STATE = [
         key: 'auditFailure',
         title: '审核失败',
         tips: '您的账号审核失败，\n请重新填写您的注册信息！',
-        buttonText: '前往',
+        buttonText: '重新注册',
         ok: () => {
 
-            console.log('ok')
+            router.push({ path: '/login/RegisterPage' })
 
         }
     },

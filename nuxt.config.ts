@@ -12,9 +12,6 @@ export default defineNuxtConfig({
     hooks: {
         'pages:extend'(routes) {
 
-            console.log('routes1',routes)
-            const resolve = require('path').resolve
-
             // 扩展路由，让 nuxt 支持静态页面请求，如 https://www.xxx.cn/index.html
             const indexRoutes = []
             routes.forEach(element => {
@@ -76,7 +73,7 @@ export default defineNuxtConfig({
     nitro: {
         devProxy: {
             '/Cg': {
-                target: 'http://bison.test.tt.cagoe.com/Cg', // 这里是接口地址
+                target: 'http://bison.test.tt.cagoe.com/Cg/', // 这里是接口地址
                 changeOrigin: true,
                 prependPath: true,
             },

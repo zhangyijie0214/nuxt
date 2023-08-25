@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-    title: '测试',
+    title: '毕森',
     link: [
         {
             rel: 'icon', type: 'image/png', href: '/nuxt.png',
@@ -20,5 +20,9 @@ useHead({
 
 .error-border {
   border-color: red;
+}
+
+:root:root {
+  /* --el-color-primary:#b9932d; */
 }
 </style>

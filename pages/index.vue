@@ -93,6 +93,21 @@ const loginEvent = async() => {
 
     }else{
 
+        if(~~_res.ErrKey === 4) {
+
+            router.push({ path: '/login/LoginStatePage',query: { state: 'auditFailure' } })
+
+            return
+
+        }
+        if(~~_res.ErrKey === 1) {
+
+            router.push({ path: '/login/LoginStatePage',query: { state: 'underReview' } })
+
+            return
+
+        }
+
         ElMessage({
             appendTo: loginRight.value,
             message: _res.msg,

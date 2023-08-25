@@ -1,63 +1,12 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
+<!-- 打包方式 -->
+yarn generate
+<!-- 本地调试 -->
 yarn dev
-```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+<!-- 项目相关信息 -->
+设计稿
+https://mastergo.com/file/96985888685927?page_id=207%3A63330
+接口文档 
+https://cagoe.yuque.com/wtm65r/sn9bl2/rev1e83iqxvi6n6p
+后台地址
+http://bison.test.tt.cagoe.com/Cg/VueManage/Default.html?SysName=javaframework

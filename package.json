@@ -54,10 +54,13 @@
     "@unhead/vue": "^1.3.4",
     "ces": "^0.0.46",
     "ces-mini-h5": "^0.3.16",
+    "cgl": "^2.0.5",
     "daisyui": "^3.5.1",
+    "echarts": "^5.4.3",
     "nuxt-responsive-loader": "^2.0.1",
     "unctx": "^2.3.1",
     "vue": "^3.3.4",
+    "vue-echarts": "^6.6.1",
     "vue-router": "^4.2.4"
   }
 }
