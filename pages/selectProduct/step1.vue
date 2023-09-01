@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-24 14:31:57
- * @lastTime : 2023-08-25 13:29:37
+ * @lastTime : 2023-09-01 16:57:40
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step1.vue
 -->
@@ -116,7 +116,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 
         if (valid) {
 
-            navigateTo('/selectProduct/step2')
+            navigateTo('/selectProduct/step2/index.html')
 
         } else {
 

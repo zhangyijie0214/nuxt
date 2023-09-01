@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-24 15:46:46
- * @lastTime : 2023-08-25 20:40:34
+ * @lastTime : 2023-09-01 16:57:47
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step2.vue
 -->
@@ -158,7 +158,7 @@ async function getChartDataResult() {
         formInline.quoteId = _res.data.quote_id
         formInline.chartData = _res.data.chartData
 
-        router.push({ path: '/selectProduct/step3' })
+        navigateTo({ path: '/selectProduct/step3/index.html' })
 
     }else{
 

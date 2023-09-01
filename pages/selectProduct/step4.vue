@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-25 13:06:50
- * @lastTime : 2023-09-01 11:03:27
+ * @lastTime : 2023-09-01 16:58:03
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step4.vue
 -->
@@ -27,7 +27,7 @@ onMounted(async() => {
     state.snapSelectProduct.stepNum = 4
     if(!state.snapSelectProduct.quoteId) {
 
-        router.push({ path: '/selectProduct/step1' })
+        navigateTo({ path: '/selectProduct/step1/index.html' })
 
     }
     isLoading.value = true
@@ -205,7 +205,7 @@ async function submitForm() {
     isLoading.value = false
     if(_res.success) {
 
-        router.push({ path: '/info' })
+        navigateTo({ path: '/info/index.html' })
 
     }else{
 

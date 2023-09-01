@@ -14,7 +14,7 @@ const LOGIN_STATE = [
         buttonText: '登录',
         ok: () => {
 
-            router.push({ path: '/' })
+            navigateTo({ path: '/index.html' })
 
         }
     },
@@ -32,7 +32,7 @@ const LOGIN_STATE = [
         buttonText: '重新注册',
         ok: () => {
 
-            router.push({ path: '/login/RegisterPage' })
+            navigateTo({ path: '/login/RegisterPage/index.html' })
 
         }
     },

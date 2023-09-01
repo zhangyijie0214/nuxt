@@ -2,18 +2,18 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-25 19:43:10
- * @lastTime : 2023-08-28 10:45:51
+ * @lastTime : 2023-09-01 16:44:32
  * @LastAuthor : Do not edit
  * @文件路径 : /plugins/api2.client.ts
  */
 import { callEasyItf ,setInterfaceUrl,sendRequest,Request,ERequestEvent } from 'cgl'
 setInterfaceUrl('/Cg/Itf/Java/CmnMisItf.jsp')
 
-Request.globalInterceptor.On(ERequestEvent.AFTER_REQUEST,(res,res2) => {
+Request.globalInterceptor.On(ERequestEvent.AFTER_REQUEST,(res) => {
 
     if(res.ErrKey === 'UserNotLoggedIn') {
 
-        navigateTo({ path: '/',query: { isLogin: 0 },replace: true })
+        navigateTo({ path: '/index.html',query: { isLogin: 0 },replace: true })
 
     }
 

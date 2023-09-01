@@ -2,7 +2,7 @@
  * @description :选择板块Bar
  * @author : zhangyijie
  * @date : 2023-08-23 10:23:24
- * @lastTime : 2023-09-01 11:13:41
+ * @lastTime : 2023-09-01 16:51:19
  * @LastAuthor : Do not edit
  * @文件路径 : /components/selectBar/SelectBar.vue
 -->
@@ -12,13 +12,13 @@ const props = defineProps({ showIndex: Number })
 
 function goProduct() {
 
-    navigateTo({ path: '/selectProduct/step1',replace: true })
+    navigateTo({ path: '/selectProduct/step1/index.html',replace: true })
 
 }
 
 function goServe() {
 
-    navigateTo({ path: '/selectService',replace: true })
+    navigateTo({ path: '/selectService/index.html',replace: true })
 
 }
 </script>

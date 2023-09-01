@@ -6,7 +6,7 @@ Cgl.Net.Request.GlobalInterceptor.On('AFTER_REQUEST',(res) => {
 
     if(res.ErrKey === 'UserNotLoggedIn') {
 
-        navigateTo('/')
+        navigateTo('/index.html')
 
     }
 

@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-15 17:42:57
- * @lastTime : 2023-08-28 10:04:59
+ * @lastTime : 2023-09-01 17:08:08
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/info.vue
 -->
@@ -49,6 +49,7 @@ async function getList() {
 
         tableInfo.tableData = _res.data
         tableInfo.recCount = ~~_res.RecCount
+        console.log('tableInfo.recCount',tableInfo.recCount)
 
     }else{
 
@@ -67,7 +68,7 @@ const handleSizeChange = (val: number) => {
     console.log(`${val} items per page`)
 
 }
-const handleCurrentChange = (val: number) => {
+const handleCurrentChange = () => {
 
     getList()
 
@@ -130,6 +131,7 @@ const handleCurrentChange = (val: number) => {
                 <el-config-provider v-if="tableInfo.recCount > 1" :locale="zhCn">
                     <el-pagination
                         v-model:current-page="tableInfo.currentPage"
+                        :default-page-size="tableInfo.pageSize"
                         class="quotation--list--content--pagination border shadow-md rounded-box"
                         layout="prev, pager, next, jumper"
                         :total="tableInfo.recCount"

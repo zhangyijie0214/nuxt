@@ -4,7 +4,6 @@ import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 const loginRight:any = ref(null)
-const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
 import { useUserStore } from '../store/useUserStore'
 import { EMAIL_REGULAR } from '../configs/regularValidation'
@@ -89,20 +88,20 @@ const loginEvent = async() => {
 
     if(_res.success) {
 
-        router.push({ path: '/info' })
+        navigateTo({ path: '/info/index.html' })
 
     }else{
 
         if(~~_res.ErrKey === 4) {
 
-            router.push({ path: '/login/LoginStatePage',query: { state: 'auditFailure' } })
+            navigateTo({ path: '/login/LoginStatePage/index.html',query: { state: 'auditFailure' } })
 
             return
 
         }
         if(~~_res.ErrKey === 1) {
 
-            router.push({ path: '/login/LoginStatePage',query: { state: 'underReview' } })
+            navigateTo({ path: '/login/LoginStatePage/index.html',query: { state: 'underReview' } })
 
             return
 
@@ -125,7 +124,7 @@ const loginEvent = async() => {
     <LoginLeft>
         <div ref="loginRight" class="login--right card flex-shrink-0 w-full shadow-2xl bg-base-100">
             <div>
-                <img style="height: 100%; object-fit: cover;" src="../public/images/logo.png" alt="" />
+                <img style="height: 50px; object-fit: cover;" src="../public/images/logo.png" alt="" />
             </div>
             <div class="login--right--title">
                 欢迎登录毕森

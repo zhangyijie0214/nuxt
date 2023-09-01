@@ -3,7 +3,7 @@ useHead({
     title: '毕森',
     link: [
         {
-            rel: 'icon', type: 'image/png', href: '/nuxt.png',
+            rel: 'icon', type: 'image/png', href: '/icon.png',
         },
     ],
 })

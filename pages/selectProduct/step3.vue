@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-24 20:24:59
- * @lastTime : 2023-08-25 20:56:44
+ * @lastTime : 2023-09-01 17:25:03
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step3.vue
 -->
@@ -44,7 +44,7 @@ onMounted(() => {
 
     if(!state.snapSelectProduct.quoteId) {
 
-        router.push({ path: '/selectProduct/step1' })
+        navigateTo({ path: '/selectProduct/step1/index.html' })
 
     }
 
@@ -189,7 +189,7 @@ function triggerLink(url:string) {
 async function goStep4() {
 
     await uploadCharts(false)
-    router.push({ path: '/selectProduct/step4' })
+    navigateTo({ path: '/selectProduct/step4/index.html' })
 
 }
 
@@ -207,7 +207,7 @@ async function goStep4() {
             </div>
             <!-- 循环遍历chartData中的每个图表数据 -->
             <div v-for="(chart, chartKey,index) in state.snapSelectProduct.chartData" :key="chartKey">
-                <v-chart :ref="el => { chartRefs[`chart-${index}`] = el; }" :option="generateOptions(chart)" class="chart" />
+                <v-chart :option="generateOptions(chart)" class="chart" />
             </div>
             <div class="service--box--button">
 
@@ -220,7 +220,7 @@ async function goStep4() {
                     class="btn btn-block service__button"
                     color="#8181ff"
                     style="margin-right:20px;"
-                    @click="uploadCharts"
+                    @click="uploadCharts()"
                 >导出曲线</el-button>
                 <el-button
                     class="btn btn-block service__button"
@@ -229,6 +229,10 @@ async function goStep4() {
                 >上一步</el-button>
             </div>
             <div style="height: 100px;"></div>
+
+            <div v-for="(chart, chartKey,index) in state.snapSelectProduct.chartData" :key="chartKey">
+                <v-chart :ref="el => { chartRefs[`chart-${index}`] = el; }" :option="generateOptions(chart)" class="chart2" />
+            </div>
         </div>
     </div>
 </template>
@@ -292,5 +296,12 @@ async function goStep4() {
   height: 800px;
   border: 1px solid #333333;  /* 边框宽度、样式和颜色 */
   box-sizing: border-box;
+}
+
+.chart2 {
+  position: fixed;
+  right: 100000px;
+  width: 600px;
+  height: 390px;
 }
 </style>

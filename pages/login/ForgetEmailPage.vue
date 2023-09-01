@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-17 11:43:55
- * @lastTime : 2023-08-22 13:37:44
+ * @lastTime : 2023-09-01 16:53:32
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/login/ForgetEmailPage.vue
 -->
@@ -88,7 +88,7 @@ async function emailVerificationButton() {
 
     if(_res.success) {
 
-        router.push({ path: '/login/LoginStatePage',query: { state: 'emailSuccess' } })
+        navigateTo({ path: '/login/LoginStatePage/index.html',query: { state: 'emailSuccess' } })
 
     }else{
 

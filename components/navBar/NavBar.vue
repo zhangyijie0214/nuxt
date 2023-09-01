@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-16 14:26:18
- * @lastTime : 2023-08-28 10:15:37
+ * @lastTime : 2023-09-01 16:49:36
  * @LastAuthor : Do not edit
  * @文件路径 : /components/navBar/NavBar.vue
 -->
@@ -24,7 +24,7 @@ async function logoutEvent() {
     const _res = await logout({})
     if(_res.success) {
 
-        navigateTo('/')
+        navigateTo('/index.html')
 
     }else{
 
@@ -40,7 +40,7 @@ async function logoutEvent() {
 <template>
     <div class="navbar bg-base-100 shadow-md rounded-box">
         <div class="navbar-start">
-            <img style="padding-left:36px;height: 100%; object-fit: cover;" src="../../public/images/logo.png" alt="" />
+            <img style="padding-left:36px;height: 40px; object-fit: cover;" src="../../public/images/logo.png" alt="" />
         </div>
 
         <div class="navbar-end  lg:flex">

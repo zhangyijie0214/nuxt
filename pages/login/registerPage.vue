@@ -115,7 +115,7 @@ async function registerButton() {
 
     if(_res.success) {
 
-        router.push({ path: '/login/LoginStatePage',query: { state: 'emailSuccess' } })
+        navigateTo({ path: '/login/LoginStatePage/index.html',query: { state: 'emailSuccess' } })
 
     }else{
 
@@ -240,7 +240,6 @@ async function registerButton() {
     color: #8692a6;
   }
 
-   
 
   :deep(.label) {
     padding-top:0

@@ -341,7 +341,7 @@ async function serviceQuotationResult() {
     isLoading.value = false
     if(_res.success) {
 
-        navigateTo('/info')
+        navigateTo('/info/index.html')
 
     }else{
 
