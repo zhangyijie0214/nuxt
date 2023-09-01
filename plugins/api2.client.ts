@@ -2,18 +2,18 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-25 19:43:10
- * @lastTime : 2023-08-25 20:45:47
+ * @lastTime : 2023-08-28 10:45:51
  * @LastAuthor : Do not edit
  * @文件路径 : /plugins/api2.client.ts
  */
 import { callEasyItf ,setInterfaceUrl,sendRequest,Request,ERequestEvent } from 'cgl'
 setInterfaceUrl('/Cg/Itf/Java/CmnMisItf.jsp')
 
-Request.globalInterceptor.On(ERequestEvent.AFTER_REQUEST,(res) => {
+Request.globalInterceptor.On(ERequestEvent.AFTER_REQUEST,(res,res2) => {
 
     if(res.ErrKey === 'UserNotLoggedIn') {
 
-        navigateTo('/')
+        navigateTo({ path: '/',query: { isLogin: 0 },replace: true })
 
     }
 
@@ -27,6 +27,8 @@ export default defineNuxtPlugin((nuxtApp) => {
         updatePassword: (data) => callEasyItf('updatePassword', data),
         forgotPassword: (data) => callEasyItf('forgotPassword', data),
         isLogin: (data) => callEasyItf('isLogin', data),
+        logout: (data) => callEasyItf('logout', data),
+
         //产品服务
         getProduct: (data) => callEasyItf('getProduct', data),
         getServiceByProduct: (data) => callEasyItf('getServiceByProduct', data),

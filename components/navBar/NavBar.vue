@@ -2,19 +2,37 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-16 14:26:18
- * @lastTime : 2023-08-24 13:45:32
+ * @lastTime : 2023-08-28 10:15:37
  * @LastAuthor : Do not edit
  * @文件路径 : /components/navBar/NavBar.vue
 -->
 <script setup lang="ts">
 import { SwitchButton } from '@element-plus/icons-vue'
 import { NAV_LIST } from '../../configs/navBarList'
+import { useUserStore } from '../../store/useUserStore'
 
-
+const { logout } = useUserStore()
 const props = defineProps({ showKey: String })
 function jumpPath(path:string) {
 
     navigateTo(path)
+
+}
+
+async function logoutEvent() {
+
+    const _res = await logout({})
+    if(_res.success) {
+
+        navigateTo('/')
+
+    }else{
+
+        ElMessageBox.alert(_res.msg, '失败', {
+            confirmButtonText: '确认',
+        })
+
+    }
 
 }
 </script>
@@ -39,7 +57,7 @@ function jumpPath(path:string) {
                     <li>
                         <a class="justify-between">
                             <el-icon><SwitchButton /></el-icon>
-                            <span><nuxt-link to="/">退出登录</nuxt-link></span>
+                            <span @click="logoutEvent">退出登录</span>
                         </a>
                     </li>
                 </ul>

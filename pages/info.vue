@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-15 17:42:57
- * @lastTime : 2023-08-25 21:38:02
+ * @lastTime : 2023-08-28 10:04:59
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/info.vue
 -->
@@ -15,10 +15,10 @@ import { useProductStore } from '../store/useProductStore'
 const { getDealerQuote } = useProductStore()
 
 const isLoading = ref(false)
-const currentPage3 = ref(1)
-const pageSize3 = ref(100)
-const small = ref(false)
-const listHeight = ref(0)
+const clientSize = ref({
+    height: 0,
+    width: 0
+})
 const tableInfo = reactive({
     // 显示的数据
     tableData: [],
@@ -34,7 +34,8 @@ onMounted(async() => {
     const _wrapperHeight = tableRef.value?.$el.offsetHeight
     tableInfo.pageSize = Math.ceil(_wrapperHeight / 44)
     await getList()
-    listHeight.value = _wrapperHeight
+    clientSize.value.width = document.body.clientWidth
+    clientSize.value.height = document.body.clientHeight
 
 })
 
@@ -47,7 +48,7 @@ async function getList() {
     if(_res.success) {
 
         tableInfo.tableData = _res.data
-        tableInfo.recCount = _res.RecCount
+        tableInfo.recCount = ~~_res.RecCount
 
     }else{
 
@@ -68,7 +69,7 @@ const handleSizeChange = (val: number) => {
 }
 const handleCurrentChange = (val: number) => {
 
-    console.log(`current page: ${val}`)
+    getList()
 
 }
 
@@ -126,14 +127,12 @@ const handleCurrentChange = (val: number) => {
                         </template>
                     </el-table-column>
                 </el-table>
-                <el-config-provider v-if="tableInfo.recCount >= tableInfo.pageSize" :locale="zhCn">
+                <el-config-provider v-if="tableInfo.recCount > 1" :locale="zhCn">
                     <el-pagination
-                        v-model:current-page="currentPage3"
-                        v-model:page-size="pageSize3"
+                        v-model:current-page="tableInfo.currentPage"
                         class="quotation--list--content--pagination border shadow-md rounded-box"
-                        :small="small"
                         layout="prev, pager, next, jumper"
-                        :total="1000"
+                        :total="tableInfo.recCount"
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
                     />
@@ -152,6 +151,7 @@ const handleCurrentChange = (val: number) => {
   width: 100vw;
   height: 100vh;
   min-height: 800px;
+
 
   .quotation--list--content {
     width: 90vw;

@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-17 17:16:59
- * @lastTime : 2023-08-22 14:21:58
+ * @lastTime : 2023-08-28 10:13:45
  * @LastAuthor : Do not edit
  * @文件路径 : /store/useUserStore.ts
  */
@@ -37,7 +37,19 @@ export const useUserStore = defineStore('userState', () => {
         return _res
 
     }
+    /**
+     * @description : 退出登录
+     * @author : zhangyijie
+     * @date : 2023-08-22 09:20:26
+     * @param {any} date
+     */
+    const logout = async(date:any) => {
 
+        const _res = await $api.logout(date)
+
+        return _res
+
+    }
     /**
      * @description : 账号注册
      * @author : zhangyijie
@@ -101,7 +113,8 @@ export const useUserStore = defineStore('userState', () => {
         getAccountRegister,
         getUpdatePassword,
         getForgotPassword,
-        getIsLogin
+        getIsLogin,
+        logout
     }
 
 })

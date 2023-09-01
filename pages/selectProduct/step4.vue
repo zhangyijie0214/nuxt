@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-25 13:06:50
- * @lastTime : 2023-08-25 20:58:01
+ * @lastTime : 2023-09-01 11:03:27
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step4.vue
 -->
@@ -367,7 +367,6 @@ async function submitForm() {
   overflow: hidden;
   overflow: auto;
   height: 100vh;
-  min-height: 1200px;
 
   .service--box {
     margin: 100px auto 0;
