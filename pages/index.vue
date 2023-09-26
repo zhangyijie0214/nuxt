@@ -165,7 +165,7 @@ const loginEvent = async() => {
                 <label class="label">
                     <span class="label-text"></span>
                     <span class="label-text-alt text-sm">
-                        <a class="link"><nuxt-link to="/login/ForgetEmailPage">忘记密码？</nuxt-link></a>
+                        <a class="link"><nuxt-link to="/login/ForgetEmailPage/index.html">忘记密码？</nuxt-link></a>
                     </span>
                 </label>
                 <el-form-item>
