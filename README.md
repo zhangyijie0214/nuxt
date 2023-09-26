@@ -1,17 +1,19 @@
-<!-- 打包方式 -->
-yarn generate
-<!-- 本地调试 -->
-yarn dev
-<!-- 项目相关信息 -->
-设计稿
-https://mastergo.com/file/96985888685927?page_id=207%3A63330
-接口文档 
-https://cagoe.yuque.com/wtm65r/sn9bl2/rev1e83iqxvi6n6p
-后台地址
+
+# 【 8041 】 毕森机械在线报价系统
+
+## 项目相关介绍
+本项目使用nuxt来开发
+
+## 项目相关信息
+*设计稿*  
+https://mastergo.com/file/96985888685927?page_id=207%3A63330  
+*接口文档*   
+https://cagoe.yuque.com/wtm65r/sn9bl2/rev1e83iqxvi6n6p  
+*后台地址*  
 http://bison.test.tt.cagoe.com/Cg/VueManage/Default.html?SysName=javaframework
 
-
 <!--  8041 毕森机械在线报价系统 -->
+## 目录 & 结构
 
 | 目录 | 作用 | 作用 |
 | --- | ---- | ---- |
@@ -28,8 +30,11 @@ http://bison.test.tt.cagoe.com/Cg/VueManage/Default.html?SysName=javaframework
 | [nuxt](./nuxt.config.ts) | nuxt的相关配置页面
 
 
-
-
+## 编译方式
+**打包方式**  
+yarn generate  
+**本地调试**  
+yarn dev
 
  
 
