@@ -2,7 +2,7 @@
  * @description : 新建产品
  * @author : zhangyijie
  * @date : 2023-08-23 14:13:28
- * @lastTime : 2023-08-25 21:07:35
+ * @lastTime : 2023-10-25 16:23:31
  * @LastAuthor : Do not edit
  * @文件路径 : /store/useProductStore.ts
  */
@@ -54,6 +54,8 @@ const PRODUCT_STORE_STATE: IProductStoreState = {
         standardScopeData: [],
         // 可选数据
         optionalConfigData: [],
+        // 相对湿度
+        relativeHumidityNumber: 0
 
     }
 }

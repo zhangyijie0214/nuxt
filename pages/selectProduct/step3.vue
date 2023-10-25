@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-24 20:24:59
- * @lastTime : 2023-09-01 17:25:03
+ * @lastTime : 2023-10-25 17:06:51
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step3.vue
 -->
@@ -45,12 +45,14 @@ onMounted(() => {
     if(!state.snapSelectProduct.quoteId) {
 
         navigateTo({ path: '/selectProduct/step1/index.html' })
+        return
 
     }
 
     state.snapSelectProduct.stepNum = 3
     state.snapSelectProduct.chartImgList = []
     state.snapSelectProduct.chartPdfUrl = ''
+    state.snapSelectProduct.chartData['chart-1'].desc = state.snapSelectProduct.chartData['chart-1'].desc + '  相对湿度: ' + state.snapSelectProduct.relativeHumidityNumber + '% RH'
 
 })
 function back() {
@@ -206,7 +208,7 @@ async function goStep4() {
                 <img style="width:100%" src="../../public/images/stepBar/step3.png" alt="" />
             </div>
             <!-- 循环遍历chartData中的每个图表数据 -->
-            <div v-for="(chart, chartKey,index) in state.snapSelectProduct.chartData" :key="chartKey">
+            <div v-for="(chart, chartKey) in state.snapSelectProduct.chartData" :key="chartKey">
                 <v-chart :option="generateOptions(chart)" class="chart" />
             </div>
             <div class="service--box--button">

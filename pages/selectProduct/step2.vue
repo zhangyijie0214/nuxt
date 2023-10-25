@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-24 15:46:46
- * @lastTime : 2023-09-01 16:57:47
+ * @lastTime : 2023-10-25 17:06:29
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step2.vue
 -->
@@ -14,6 +14,10 @@ import SelectBar from '../../components/selectBar/SelectBar.vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useProductStore } from '../../store/useProductStore'
 
+const intakeTemperatureRef = ref()
+const intakePressureRef = ref()
+const exhaustPressureRef = ref()
+
 const ruleFormRef = ref<FormInstance>()
 const router = useRouter()
 const { getChartData,state } = useProductStore()
@@ -21,6 +25,12 @@ const isLoading = ref(false)
 
 onMounted(() => {
 
+    if(!state.snapSelectProduct.company) {
+
+        navigateTo('/selectProduct/step1/index.html')
+        return
+
+    }
 
     state.snapSelectProduct.stepNum = 2
 
@@ -35,30 +45,41 @@ const formInline:any = state.snapSelectProduct
 
 const validateIntakeTemperature = (rule: any, value: any, callback: any) => {
 
-    if (~~value > 45 || ~~value < 0) {
+    const _item:any = data.intakeTemperatureUnitList.find((item:any) => item.id === data.intakeTemperatureUnitType)
+    if (value <= _item.scopeTop && value >= _item.scopeBottom) {
 
-        callback(new Error('您所填参数已超出常规范围0~45，如需定制，请邮箱联系vb3hxrhohsc@163.com'))
+        callback()
 
-    } else if(Number.isInteger(value)) {
-
-        callback(new Error('请输入整数'))
 
     } else {
 
-        callback()
+        callback(new Error(`您所填参数已超出常规范围${_item.scope}，如需定制，请邮箱联系vb3hxrhohsc@163.com`))
+
 
     }
 
 }
 const validateIntakePressure = (rule: any, value: any, callback: any) => {
 
-    if (~~value > 101.3 || ~~value < 60) {
+    const _item:any = data.intakePressureUnitTypeList.find((item:any) => item.id === data.intakePressureUnitType)
+    if (value <= _item.scopeTop && value >= _item.scopeBottom) {
 
-        callback(new Error('您所填参数已超出常规范围60~101.3，如需定制，请邮箱联系vb3hxrhohsc@163.com'))
+        callback()
 
-    }else if(Number.isInteger(value)) {
 
-        callback(new Error('请输入整数'))
+    } else {
+
+        callback(new Error(`您所填参数已超出常规范围${_item.scope}，如需定制，请邮箱联系vb3hxrhohsc@163.com`))
+
+
+    }
+
+}
+const validateIntakeFlow = (rule: any, value: any, callback: any) => {
+
+    if (value > 600 || value < 60) {
+
+        callback(new Error('您所填参数已超出常规范围60~600，如需定制，请邮箱联系vb3hxrhohsc@163.com'))
 
     } else {
 
@@ -67,17 +88,13 @@ const validateIntakePressure = (rule: any, value: any, callback: any) => {
     }
 
 }
-const validateIntakeFlow = (rule: any, value: any, callback: any) => {
+const validateRelativeHumidity = (rule: any, value: any, callback: any) => {
 
-    if (~~value > 600 || ~~value < 60) {
+    if (value > 100 || value < 0) {
 
-        callback(new Error('您所填参数已超出常规范围60~600，如需定制，请邮箱联系vb3hxrhohsc@163.com'))
+        callback(new Error('您所填参数已超出常规范围0~100，如需定制，请邮箱联系vb3hxrhohsc@163.com'))
 
-    }else if(Number.isInteger(value)) {
-
-        callback(new Error('请输入整数'))
-
-    }else {
+    } else {
 
         callback()
 
@@ -86,27 +103,122 @@ const validateIntakeFlow = (rule: any, value: any, callback: any) => {
 }
 const validateExhaustPressure = (rule: any, value: any, callback: any) => {
 
-    if (~~value > 1250 || ~~value < 50) {
+    const _item:any = data.exhaustPressureUnitTypeList.find((item:any) => item.id === data.exhaustPressureUnitType)
+    if (value <= _item.scopeTop && value >= _item.scopeBottom) {
 
-        callback(new Error('您所填参数已超出常规范围50~1250，如需定制，请邮箱联系vb3hxrhohsc@163.com'))
+        callback()
 
-    }else if(Number.isInteger(value)) {
-
-        callback(new Error('请输入整数'))
 
     } else {
 
-        callback()
+        callback(new Error(`您所填参数已超出常规范围${_item.scope}，如需定制，请邮箱联系vb3hxrhohsc@163.com`))
+
 
     }
 
 }
+const data:any = reactive({
+    intakeTemperatureUnitType: '1',
+    intakeTemperatureUnitList: [
+        {
+            id: '1',
+            name: '°C',
+            scope: '0 ~ 45',
+            scopeTop: 45, // 最高温度
+            scopeBottom: 0, // 最低温度
+        },
+        {
+            id: '2',
+            name: '°F',
+            scope: '32 ~ 113',
+            scopeTop: 113,
+            scopeBottom: 32,
+        },
+        {
+            id: '3',
+            name: 'K',
+            scope: '273.15 ~ 318.15',
+            scopeTop: 318.15,
+            scopeBottom: 273.15,
+        }
+    ],
+    exhaustPressureUnitType: '1',
+    exhaustPressureUnitTypeList: [
+        {
+            id: '1',
+            name: 'Kpa(A)',
+            scope: '50 ~ 1250',
+            scopeTop: 1250,
+            scopeBottom: 50
+        },
+        {
+            id: '2',
+            name: 'Bar(a)',
+            scope: '0.5 ~ 12.5',
+            scopeTop: 12.5,
+            scopeBottom: 0.5
+        },
+        {
+            id: '3',
+            name: 'PSI(A)',
+            scope: '7.25 ~ 181.29',
+            scopeTop: 181.29,
+            scopeBottom: 7.25
+        },
+        {
+            id: '4',
+            name: 'Kpa(G)',
+            scope: '-10 ~ 1148.7',
+            scopeTop: 1148.7,
+            scopeBottom: -10
+        },
+        {
+            id: '5',
+            name: 'Bar(g)',
+            scope: '-0.1 ~ 11.487',
+            scopeTop: 11.487,
+            scopeBottom: -0.1
+        },
+        {
+            id: '6',
+            name: 'PSI(G)',
+            scope: '-1.45 ~ 166.6',
+            scopeTop: 166.6,
+            scopeBottom: -1.45
+        }
+    ],
+    intakePressureUnitType: '1',
+    intakePressureUnitTypeList: [
+        {
+            id: '1',
+            name: 'Kpa(A)',
+            scope: '60 ~ 101.3',
+            scopeTop: 101.3,
+            scopeBottom: 60
+        },
+        {
+            id: '2',
+            name: 'Bar(a)',
+            scope: '0.6 ~ 1.013',
+            scopeTop: 1.013,
+            scopeBottom: 0.6
+        },
+        {
+            id: '3',
+            name: 'PSI(A)',
+            scope: '8.7 ~ 14.69',
+            scopeTop: 14.69,
+            scopeBottom: 8.7
+        }
+    ]
+})
 
 const rules = reactive<FormRules<typeof formInline>>({
     intakeTemperature: [{ validator: validateIntakeTemperature, trigger: 'blur' }],
     intakePressure: [{ validator: validateIntakePressure, trigger: 'blur' }],
     intakeFlow: [{ validator: validateIntakeFlow, trigger: 'blur' }],
     exhaustPressure: [{ validator: validateExhaustPressure, trigger: 'blur' }],
+    relativeHumidity: [{ validator: validateRelativeHumidity, trigger: 'blur' }],
 })
 
 const submitForm = (formEl: FormInstance | undefined) => {
@@ -147,7 +259,10 @@ async function getChartDataResult() {
         intake_pressure: formInline.intakePressure,
         intake_flow: formInline.intakeFlow,
         exhaust_pressure: formInline.exhaustPressure,
-
+        relative_humidity: formInline.relativeHumidity,
+        intake_pressure_unit_type: data.intakePressureUnitType,
+        exhaust_pressure_unit_type: data.exhaustPressureUnitType,
+        intake_temperature_unit_type: data.intakeTemperatureUnitType,
 
     }
     isLoading.value = true
@@ -157,7 +272,7 @@ async function getChartDataResult() {
 
         formInline.quoteId = _res.data.quote_id
         formInline.chartData = _res.data.chartData
-
+        state.snapSelectProduct.relativeHumidityNumber = formInline.relativeHumidity
         navigateTo({ path: '/selectProduct/step3/index.html' })
 
     }else{
@@ -173,6 +288,13 @@ async function getChartDataResult() {
 function back() {
 
     router.back()
+
+}
+
+function getTipsPlaceholder(id:string,list:any) {
+
+    const _item = list.find((item:any) => item.id === id)
+    return _item.scope
 
 }
 </script>
@@ -196,29 +318,43 @@ function back() {
                 size="large"
                 :rules="rules"
             >
-                <el-form-item prop="intakeTemperature" label="进气温度" class="formItem">
-                    <el-input v-model="formInline.intakeTemperature" type="number" autocomplete="off" placeholder="0~45" clearable>
-                        <template #append>°C</template>
+                <el-form-item ref="intakeTemperatureRef" prop="intakeTemperature" label="进气温度" class="formItem">
+                    <el-input v-model="formInline.intakeTemperature" type="number" autocomplete="off" :placeholder="getTipsPlaceholder(data.intakeTemperatureUnitType,data.intakeTemperatureUnitList)" clearable>
+                        <template #append>
+                            <el-select v-model="data.intakeTemperatureUnitType" style="width:100px" @change="intakeTemperatureRef.resetField()">
+                                <el-option v-for="item in data.intakeTemperatureUnitList" :key="~~item.id" :label="item.name" :value="item.id" />
+                            </el-select>
+                        </template>
                     </el-input>
                 </el-form-item>
-                <el-form-item prop="intakePressure" label="进气压力" class="formItem">
-                    <template #append>.com</template>
-                    <el-input v-model="formInline.intakePressure" type="number" placeholder="60~101.3" clearable>
-                        <template #append>Kpa
+                <el-form-item ref="intakePressureRef" prop="intakePressure" label="进气压力" class="formItem">
+                    <el-input v-model="formInline.intakePressure" type="number" :placeholder="getTipsPlaceholder(data.intakePressureUnitType,data.intakePressureUnitTypeList)" clearable>
+                        <template #append>
+                            <el-select v-model="data.intakePressureUnitType" style="width: 100px" @change="intakePressureRef.resetField()">
+                                <el-option v-for="item in data.intakePressureUnitTypeList" :key="~~item.id" :label="item.name" :value="item.id" />
+                            </el-select>
                         </template>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="intakeFlow" label="进气流量" class="formItem">
 
-                    <el-input v-model="formInline.intakeFlow" type="number" placeholder="60~600" clearable>
-                        <template #append>m³/min</template>
+                    <el-input v-model="formInline.intakeFlow" type="number" placeholder="60 ~ 600" clearable>
+                        <template #append><div style="width:60px;">m³/min</div></template>
                     </el-input>
                 </el-form-item>
-                <el-form-item prop="exhaustPressure" label="排气压力" class="formItem">
+                <el-form-item ref="exhaustPressureRef" prop="exhaustPressure" label="排气压力" class="formItem">
 
-                    <el-input v-model="formInline.exhaustPressure" type="number" placeholder="50-1250" clearable>
-                        <template #append>Kpa
+                    <el-input v-model="formInline.exhaustPressure" type="number" :placeholder="getTipsPlaceholder(data.exhaustPressureUnitType,data.exhaustPressureUnitTypeList)" clearable>
+                        <template #append>
+                            <el-select v-model="data.exhaustPressureUnitType" style="width: 100px" @change="exhaustPressureRef.resetField()">
+                                <el-option v-for="item in data.exhaustPressureUnitTypeList" :key="~~item.id" :label="item.name" :value="item.id" />
+                            </el-select>
                         </template>
+                    </el-input>
+                </el-form-item>
+                <el-form-item prop="relativeHumidity" label="相对湿度" class="formItem">
+                    <el-input v-model="formInline.relativeHumidity" type="number" placeholder="0 ~ 100" clearable>
+                        <template #append><div style="width:60px;">RH（%）</div></template>
                     </el-input>
                 </el-form-item>
             </el-form>
@@ -236,6 +372,7 @@ function back() {
                     @click="back"
                 >上一步</el-button>
             </div>
+            <div style="height: 100px;"></div>
         </div>
     </div>
 </template>
@@ -244,7 +381,6 @@ function back() {
   overflow: hidden;
   overflow: auto;
   height: 100vh;
-  min-height: 1200px;
 
   .service--box {
     margin: 100px auto 0;

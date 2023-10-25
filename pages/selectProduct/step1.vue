@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-24 14:31:57
- * @lastTime : 2023-09-01 16:57:40
+ * @lastTime : 2023-10-25 14:31:49
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step1.vue
 -->
@@ -173,6 +173,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
                     @click="submitForm(ruleFormRef)"
                 >下一步</el-button>
             </div>
+            <div style="height: 100px;"></div>
         </div>
     </div>
 </template>

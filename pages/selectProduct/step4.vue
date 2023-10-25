@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-25 13:06:50
- * @lastTime : 2023-09-01 16:58:03
+ * @lastTime : 2023-10-25 16:32:23
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step4.vue
 -->
@@ -28,6 +28,7 @@ onMounted(async() => {
     if(!state.snapSelectProduct.quoteId) {
 
         navigateTo({ path: '/selectProduct/step1/index.html' })
+        return
 
     }
     isLoading.value = true
@@ -151,7 +152,7 @@ function spanMethodStandardScope({ row, columnIndex }:any) {
 
     if (columnIndex === 0 && row.isParent) {
 
-        const subItemCount = standardScope.find((dataItem:any) => dataItem.item_name === row.item_name).sub_item.length
+        const subItemCount = standardScope.find((dataItem:any) => dataItem.item_name === row.item_name)?.sub_item?.length
 
         if(!subItemCount) {
 
