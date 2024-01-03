@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-15 17:42:57
- * @lastTime : 2023-09-01 17:08:08
+ * @lastTime : 2023-12-12 17:29:13
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/info.vue
 -->

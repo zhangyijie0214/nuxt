@@ -18,7 +18,6 @@ const validateEmail = (rule: any, value: any, callback: any) => {
 
         callback(new Error('邮箱不能为空'))
 
-
     }else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(value)) {
 
         callback(new Error('邮箱格式错误'))

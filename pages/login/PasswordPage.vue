@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-17 11:41:12
- * @lastTime : 2023-08-22 13:46:18
+ * @lastTime : 2023-12-12 17:32:48
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/login/PasswordPage.vue
 -->
@@ -18,9 +18,6 @@ const route = useRoute()
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
 const passwordRight:any = ref(null)
-definePageMeta({
-    middleware: ['auth']
-})
 
 const validatePass = (rule: any, value: any, callback: any) => {
 
