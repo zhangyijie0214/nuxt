@@ -2,7 +2,7 @@
  * @description :
  * @author : zhangyijie
  * @date : 2023-08-25 13:06:50
- * @lastTime : 2023-10-25 16:32:23
+ * @lastTime : 2024-03-21 14:52:17
  * @LastAuthor : Do not edit
  * @文件路径 : /pages/selectProduct/step4.vue
 -->
@@ -184,17 +184,39 @@ function spanMethodStandardScope({ row, columnIndex }:any) {
 function lumpSumComponent() {
 
     let sum = 0
-    formInline.optionalConfigData && formInline.optionalConfigData.forEach((element:any) => {
+    if (Array.isArray(formInline.optionalConfigData)) {
 
-        if(element.selectSub?.unit_price) {
+        formInline.optionalConfigData.forEach(element => {
 
-            sum = sum + element.selectSub?.inputValue * Number(element.selectSub?.unit_price)
+            const { selectSub } = element
+            if (selectSub && selectSub.unit_price) {
 
-        }
+                // 将unit_price转换为整数（假设最多两位小数，乘以100）
+                const unitPrice = Math.round(Number(selectSub.unit_price) * 100)
+                const inputValue = Math.round(Number(selectSub.inputValue) * 100)
+                // 使用整数进行计算以避免浮点数精度问题
+                if (!isNaN(unitPrice) && !isNaN(inputValue)) {
 
-    })
+                    sum += inputValue * unitPrice
 
-    lumpSum.value = (sum * formInline.productNum).toFixed(2)
+                }
+
+            }
+
+        })
+
+    }
+    const productNum = Number(formInline.productNum)
+    if (!isNaN(productNum)) {
+
+        // 最后将计算结果转换回原单位（除以10000，因为两个因子都乘以了100）
+        lumpSum.value = (sum * productNum / 10000).toFixed(2)
+
+    } else {
+
+        console.error('productNum is not a valid number')
+
+    }
 
 }
 
